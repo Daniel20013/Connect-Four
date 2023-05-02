@@ -13,6 +13,7 @@ for (let i = 0; i < nrLines; ++i) {
 
 function blockTheButtons() {
     let buttons = document.querySelectorAll("button");
+    alert("Congratulations! You won the game.")
     for (let i = 0; i < buttons.length; ++i) {
         buttons[i].disabled = true;
     }
@@ -21,11 +22,8 @@ function blockTheButtons() {
 function startGame() {
     let start = document.getElementById("start");
     start.style.display = "none";
-    let blueImage = document.getElementById("blueImage");
-    blueImage.style.display = "block";
 
     let column = 0, line = 0;
-    buttonState[line][column]
     for (let i = 0; i < nrLines; ++i) {
         line = 0;
         for (let j = 0; j < nrColumns; ++j) {
@@ -35,18 +33,12 @@ function startGame() {
             button.dataset.col = j;
             button.innerHTML = " ";
             button.addEventListener("click", buttonColoring);
-            button.style.position = "absolute";
             button.style.top = (2.5 + column) + "%";
             button.style.left = (5 + line) + "%";
-            button.style.padding = "2em";
-            button.style.backgroundColor = "white";
-            button.style.cursor = "pointer";
-            button.style.borderRadius = "5%";
-            button.style.border = "none";
-            button.style.width = "12%";
-            button.style.height = "15%";
+            button.style.display = "block";
             line += 13;
             cell.appendChild(button);
+            console.log("da");
         }
         column += 16;
     }
