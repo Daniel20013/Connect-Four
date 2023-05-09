@@ -49,3 +49,36 @@ h1 {
     border-radius: 5%;
     z-index: 1;
 }
+
+.endGame {
+    position: absolute;
+    z-index: 2;
+    height: 15em;
+    width: auto;
+    background-color: rgb(224, 211, 211);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.congratulations {
+    font-size: 3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.restart {
+    position: relative;
+    top: 1em;
+    left: 50%;
+    transform: translate(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgb(60, 110, 210);
+    font-size: 3em;
+    border-radius: 5%;
+    width: 4em;
+    color: white;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px black;
+}
