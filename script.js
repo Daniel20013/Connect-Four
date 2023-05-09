@@ -13,10 +13,21 @@ for (let i = 0; i < nrLines; ++i) {
 
 function blockTheButtons() {
     let buttons = document.querySelectorAll("button");
-    alert("Congratulations! You won the game.")
     for (let i = 0; i < buttons.length; ++i) {
         buttons[i].disabled = true;
     }
+    document.querySelector(".endGame").style.display = "block";
+}
+
+function restart() {
+    alert("da");
+    for (let i = 0; i < nrLines; ++i) {
+        buttonState[i] = [];
+        for (let j = 0; j < nrColumns; ++j) {
+            buttonState[i][j] = 0;
+        }
+    }
+    document.querySelector(".endGame").style.display = "none";
 }
 
 function startGame() {
@@ -38,7 +49,6 @@ function startGame() {
             button.style.display = "block";
             line += 13;
             cell.appendChild(button);
-            console.log("da");
         }
         column += 16;
     }
@@ -60,6 +70,13 @@ function buttonColoring() {
     checkItOut(line, col);
 }
 
+function theMainDiagonal(i, j, currentPlayer) {
+    if (i >= 0 && j >= 0 && i < nrLines && j < nrColumns && buttonState[i][j] === currentPlayer && currentPlayer != 0) {
+        return 1;
+    }
+    return 0;
+}
+
 function checkItOut(line, col) {
     const currentPlayer = buttonState[line][col];
     const THREE = 3, FOUR = 4;
@@ -68,7 +85,7 @@ function checkItOut(line, col) {
     let win = 0;
 
     for (let i = lineInt - THREE, j = colInt - THREE; i <= lineInt + THREE; ++i, ++j) {
-        if (i >= 0 && j >= 0 && i < nrLines && j < nrColumns && buttonState[i][j] === currentPlayer && currentPlayer != 0) {
+        if (theMainDiagonal(i, j, currentPlayer)) {
             ++win;
             if (win === FOUR) {
                 blockTheButtons();
