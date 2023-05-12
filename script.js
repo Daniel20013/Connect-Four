@@ -4,13 +4,6 @@ const cell = document.getElementById("cell");
 let player = 1;
 let buttonState = [];
 
-for (let i = 0; i < nrLines; ++i) {
-    buttonState[i] = [];
-    for (let j = 0; j < nrColumns; ++j) {
-        buttonState[i][j] = 0;
-    }
-}
-
 function blockTheButtons() {
     let buttons = document.querySelectorAll("button");
     for (let i = 0; i < buttons.length; ++i) {
@@ -19,21 +12,15 @@ function blockTheButtons() {
     document.querySelector(".endGame").style.display = "block";
 }
 
-function restart() {
-    alert("da");
+function startGame() {
     for (let i = 0; i < nrLines; ++i) {
         buttonState[i] = [];
         for (let j = 0; j < nrColumns; ++j) {
             buttonState[i][j] = 0;
         }
     }
-    document.querySelector(".endGame").style.display = "none";
-}
-
-function startGame() {
     let start = document.getElementById("start");
     start.style.display = "none";
-
     let column = 0, line = 0;
     for (let i = 0; i < nrLines; ++i) {
         line = 0;
@@ -83,7 +70,6 @@ function checkItOut(line, col) {
     const lineInt = parseInt(line);
     const colInt = parseInt(col);
     let win = 0;
-
     for (let i = lineInt - THREE, j = colInt - THREE; i <= lineInt + THREE; ++i, ++j) {
         if (theMainDiagonal(i, j, currentPlayer)) {
             ++win;
@@ -95,9 +81,7 @@ function checkItOut(line, col) {
             win = 0;
         }
     }
-
     win = 0;
-
     for (let i = lineInt - THREE; i <= lineInt + THREE; ++i) {
         if (i >= 0 && i < nrLines && buttonState[i][colInt] === currentPlayer && currentPlayer != 0) {
             ++win;
@@ -109,9 +93,7 @@ function checkItOut(line, col) {
             win = 0;
         }
     }
-
     win = 0;
-
     for (let i = colInt - THREE; i <= colInt + THREE; ++i) {
         if (i >= 0 && i < nrColumns && buttonState[lineInt][i] === currentPlayer && currentPlayer != 0) {
             ++win;
@@ -123,9 +105,7 @@ function checkItOut(line, col) {
             win = 0;
         }
     }
-
     win = 0;
-
     for (let i = lineInt - THREE, j = colInt + THREE; i <= lineInt + THREE; ++i, --j) {
         if (i >= 0 && j >= 0 && i < nrLines && j < nrColumns && buttonState[i][j] === currentPlayer && currentPlayer != 0) {
             ++win;
@@ -137,4 +117,15 @@ function checkItOut(line, col) {
             win = 0;
         }
     }   
+}
+
+function restart() {
+    alert("da");
+    for (let i = 0; i < nrLines; ++i) {
+        buttonState[i] = [];
+        for (let j = 0; j < nrColumns; ++j) {
+            buttonState[i][j] = 0;
+        }
+    }
+    document.querySelector(".endGame").style.display = "none";
 }
