@@ -5,7 +5,8 @@ let player = 1;
 let buttonState = [];
 
 function blockTheButtons() {
-    let buttons = document.querySelectorAll("button");
+    let myButton = document.querySelector("#cell");
+    let buttons = myButton.querySelectorAll("button");
     for (let i = 0; i < buttons.length; ++i) {
         buttons[i].disabled = true;
     }
@@ -120,7 +121,6 @@ function checkItOut(line, col) {
 }
 
 function restart() {
-    alert("da");
     for (let i = 0; i < nrLines; ++i) {
         buttonState[i] = [];
         for (let j = 0; j < nrColumns; ++j) {
@@ -128,4 +128,10 @@ function restart() {
         }
     }
     document.querySelector(".endGame").style.display = "none";
+    let myButton = document.querySelector("#cell");
+    let buttons = myButton.querySelectorAll("button");
+    for (let i = 0; i < buttons.length; ++i) {
+        buttons[i].disabled = false;
+            buttons[i].style.backgroundColor = "white";
+    }
 }
